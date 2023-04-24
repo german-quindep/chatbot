@@ -1,0 +1,43 @@
+bot:
+  user:
+  token:
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/bd_prueba
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 12345
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+
+urlApi: http://localhost:${server.port}
+api:
+  index: /api
+  user:
+    index: /usuarios
+    allUser: /userAll
+    create: /create
+  csv:
+    index: /csv
+    update: /upload
+    updateBd: /updateBd
+    base: /basecsv
+  bot:
+    index: /bot
+    hola: /hola
+    help: /necesito-ayuda
+    rol-pago: /roles-de-pago
+    colaborador: /colaborador-activo
+    certificado-laboral: /certificados
+    certificado-ingreso: /certificado-con-ingresos
+    certificado-sin-ingreso: /certificado-sin-ingresos
+    certificado-comision: /certificado-con-comision
+    certificado-pasante: /certificado-de-pasantes
+
