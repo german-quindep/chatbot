@@ -4,14 +4,14 @@ el bot crea menu segun lo que se reciba de la escritura por parte del usuario, e
 que los recibe para obtener la data y poder responder
 <br>#Versiones
 <ul>
-  <br><ol>Spring boot: 3.0.5 </ol>
-  <br><ol>Java: 17</ol>
+  <br><li>Spring boot: 3.0.5 </li>
+  <br><li>Java: 17</li>
  </ul>
 <ul>
 <br>#instalacion de mvn
-  <br><ol>instalacion de paquetes</ol>
-<br>mvn install
-  <br><ol>encapsulacion de paquetes</ol>
-<br>mvn packages
+<br><li>instalacion de paquetes</li>
+  <br>mvn install
+<br><li>encapsulacion de paquetes</li>
+  <br>mvn packages
 </ul>
 <br>variables de entornos se encuentra en el application.yml
