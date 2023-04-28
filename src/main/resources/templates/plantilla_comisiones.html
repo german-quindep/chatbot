@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
+  </head>
+  <body>
+    <h1>Welcome, Comisinoes <span th:text="${data.full_name}"></span>!</h1>
+    <img src="static/img/header.jpeg" alt="imagen-cabecera" />
+    <span th:text="${data.identified}"></span>
+    <span th:text="${data.fecha_ingreso}"></span>
+    <span th:text="${data.cargo}"></span>
+    <span th:text="${data.sueldo_fijo}"></span>
+    <span th:text="${data.comision}"></span>
+    <footer>
+      <img src="static/img/footer.jpeg" alt="imagen-cabecera" />
+    </footer>
+  </body>
+</html>

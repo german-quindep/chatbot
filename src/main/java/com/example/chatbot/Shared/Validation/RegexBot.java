@@ -3,7 +3,9 @@ package com.example.chatbot.Shared.Validation;
 public enum RegexBot {
     NUMERO_10_DIGITOS("^\\d{10}$", "CEDULA"),
     NUMERO_4_DIGITOS("^\\d{4}$", "OTP"),
-    FECHA("^\\d{4}-\\d{2}-\\d{2}$", "FECHA");
+    FECHA("^\\d{4}-\\d{2}-\\d{2}$", "FECHA"),
+    IMG(".*\\.(jpe?g|png)$","IMAGEN"),
+    PDF(".*\\.pdf$","PDF");
 
     private final String regex;
     private final String messageType;

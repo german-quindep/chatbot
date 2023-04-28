@@ -3,7 +3,10 @@ package com.example.chatbot.TelegramBot.Config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -18,7 +21,7 @@ public class TelegramBotConfig extends TelegramLongPollingBot {
     public String namebot;
     @Value("${bot.token}")
     public String tokenbot;
-    
+
     public ConsumeApi consumeApi;
 
     @Override
@@ -40,6 +43,12 @@ public class TelegramBotConfig extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+        // CUANDO SEA IMAGEN DEBE ENVIAR LA IMAGEN
+        if (mensajeFinal.getPathFile() != null) {
+            // ENVIO EL PATH IMG PARA ENVIARLO
+            InputFile imgFinal = new InputFile(mensajeFinal.getPathFile());
+            this.sendPdfOrImg(message.getChatId().toString(), imgFinal);
+        }
     }
 
     @Override
@@ -52,4 +61,21 @@ public class TelegramBotConfig extends TelegramLongPollingBot {
         return "";
     }
 
+    private void sendPdfOrImg(String chatId, InputFile ruta) {
+        if (ruta.getAttachName().toString().endsWith(".pdf")) {
+            SendPhoto sendPhoto = new SendPhoto(chatId, ruta);
+            try {
+                execute(sendPhoto);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        } else {
+            SendDocument sendDocument = new SendDocument(chatId, ruta);
+            try {
+                execute(sendDocument);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

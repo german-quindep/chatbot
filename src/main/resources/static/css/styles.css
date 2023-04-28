@@ -1,0 +1,29 @@
+.img-header{
+    width: 100%;
+}
+
+.content-align{
+    margin: 0 95px;
+    text-align: justify;
+    line-height: 24px;
+}
+.footer-items{
+    text-align: justify;
+    font-size: 7.5px;
+}
+.display-footer{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.items-1{
+    width: 200px;
+}
+/* .img-footer{
+    width: 200px;
+} */
+.items-2{
+    width: 360px;
+}
