@@ -14,4 +14,9 @@ que los recibe para obtener la data y poder responder
 <br><li>encapsulacion de paquetes</li>
   <br>mvn packages
 </ul>
+<ul>
+  <br>#instalacion de docker
+  <li>1.- docker build -t chatbot .</li>
+  <li>2.- docker run --network host <nombre de la imagen></li>
+</ul>
 <br>variables de entornos se encuentra en el application.yml
