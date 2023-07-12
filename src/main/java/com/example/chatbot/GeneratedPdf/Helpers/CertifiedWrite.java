@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+
 @Component
 public class CertifiedWrite {
     @Autowired
     private TemplateEngine templateEngine;
-    private static String URL_HTML = "src/main/resources/templates/";
+    private static String URL_HTML = "archive/";
 
     public String archiveWrite(Context ctx, String name, String template) throws IOException {
         String htmlContent = templateEngine.process(template, ctx);
@@ -24,8 +25,8 @@ public class CertifiedWrite {
             fileWriter.write(htmlContent);
             // Cierra el FileWriter
             fileWriter.close();
-            return "ok";
-
+            // ENVIO LA RUTA DEL ARCHIVO CREADO
+            return name;
         } catch (Exception ex) {
             return "error";
         }

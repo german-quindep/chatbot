@@ -15,7 +15,7 @@ import com.example.chatbot.TelegramBot.Model.TBotModel;
 import com.example.chatbot.TelegramBot.Service.BotService;
 
 @RestController
-@RequestMapping("${api.index}${api.bot.index}")
+@RequestMapping("${api.bot.index}")
 public class TelegramBotController {
     @Autowired
     private BotService botService;
@@ -42,45 +42,45 @@ public class TelegramBotController {
     }
 
     @PostMapping("${api.bot.certificado-comision}")
-    public ResponseBot getComision(@RequestBody TBotModel tBotModel) {
-        ResponseBot responseBot = new ResponseBot(MenuUsers.getMenuPrincipal(),
-                "Ok te genero el certificado de comision" + tBotModel.getTipo_mensaje(), null);
-        return responseBot;
+    public ResponseBot getComision(@RequestBody TBotModel tBotModel) throws IOException {
+        return botService.sendPdf(tBotModel, "con-comision");
+
     }
 
     @PostMapping("${api.bot.certificado-ingreso}")
-    public ResponseBot getIngresos(@RequestBody TBotModel tBotModel) {
-        ResponseBot responseBot = new ResponseBot(MenuUsers.getMenuPrincipal(),
-                "Ok te genero el certificado de ingresos" + tBotModel.getTipo_mensaje(), null);
-        return responseBot;
+    public ResponseBot getIngresos(@RequestBody TBotModel tBotModel) throws IOException {
+        return botService.sendPdf(tBotModel, "con-ingresos");
+
     }
 
     @PostMapping("${api.bot.certificado-sin-ingreso}")
-    public ResponseBot getSinIngresos(@RequestBody TBotModel tBotModel) {
-        ResponseBot responseBot = new ResponseBot(MenuUsers.getMenuPrincipal(),
-                "Ok te genero el certificado sin ingresos" + tBotModel.getTipo_mensaje(), null);
-        return responseBot;
+    public ResponseBot getSinIngresos(@RequestBody TBotModel tBotModel) throws IOException {
+        return botService.sendPdf(tBotModel, "sin-ingresos");
     }
 
     @PostMapping("${api.bot.certificado-pasante}")
-    public ResponseBot getPasante(@RequestBody TBotModel tBotModel) {
-        ResponseBot responseBot = new ResponseBot(MenuUsers.getMenuPrincipal(),
-                "Ok te genero el certificado de pasanstes" + tBotModel.getTipo_mensaje(), null);
-        return responseBot;
+    public ResponseBot getPasante(@RequestBody TBotModel tBotModel) throws IOException {
+        return botService.sendPdf(tBotModel, "de-pasantes");
+    }
+
+    @PostMapping("${api.bot.certificado-ex-colaborador}")
+    public ResponseBot getExColaborador(@RequestBody TBotModel tBotModel) {
+        return botService.sendExColaborador(tBotModel);
     }
 
     @PostMapping("${api.bot.vacaciones}")
     public ResponseBot getVacaciones(@RequestBody TBotModel tBotModel) throws IOException {
-        return this.botService.sendImg(tBotModel);
+        return botService.sendImg(tBotModel);
     }
 
     @PostMapping("${api.bot.rol-de-pago}")
     public ResponseBot getRolPagos(@RequestBody TBotModel tBotModel) throws IOException {
-        return this.botService.sendImg(tBotModel);
+        return botService.sendImg(tBotModel);
     }
 
+
     @PostMapping("/{numero}")
-    public ResponseBot getNumero(@PathVariable String numero) {
-        return this.botService.validateNumber(numero);
+    public ResponseBot getNumero(@PathVariable String numero, @RequestBody TBotModel tBotModel) {
+        return botService.validateNumber(numero, tBotModel);
     }
 }

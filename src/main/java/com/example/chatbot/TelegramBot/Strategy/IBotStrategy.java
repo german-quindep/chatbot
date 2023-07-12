@@ -4,5 +4,5 @@ import com.example.chatbot.TelegramBot.Model.ResponseBot;
 
 public interface IBotStrategy {
     BotStrategyRegex getTypeBot();
-    ResponseBot executeAlgoritmo();
+    ResponseBot executeAlgoritmo(String numero);
 }

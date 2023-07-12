@@ -1,6 +1,8 @@
 package com.example.chatbot.Csv.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,31 +33,31 @@ public class CsvService {
     private String nameArchivo = "gquinde.csv";
     private CsvBase64 csvBase64;
 
-    public Response<String, String> uploadCsvFile(MultipartFile file) throws IOException {
+    public ResponseEntity<?> uploadCsvFile(MultipartFile file) throws IOException {
         Response<String, String> respo = new Response<>();
         this.nameArchivo = file.getOriginalFilename();
         if (ValidateFile.validateExtension(this.nameArchivo)) {
-            respo.ResponseError(MsgError.error.toString(), 400, MsgError.failedCsv.toString());
-            return respo;
+            respo.ResponseError(MsgError.error.toString(), 404, MsgError.failedCsv.toString());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(respo);
         }
         try {
             Path rutaArchivo = Paths.get(UPLOAD_DIR + "/" + this.nameArchivo);
             Files.copy(file.getInputStream(), rutaArchivo, StandardCopyOption.REPLACE_EXISTING);
             respo.ResponseSuccess(MsgSuccess.ok.toString(), 200, MsgSuccess.fileUpdate.toString());
-            return respo;
+            return ResponseEntity.status(HttpStatus.OK.value()).body(respo);
         } catch (IOException ex) {
-            respo.ResponseError(MsgError.error.toString(), 400, MsgError.catchFile.toString());
-            return respo;
+            respo.ResponseError(MsgError.error.toString(), 404, MsgError.catchFile.toString());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(respo);
         }
     }
 
-    public Response<String, String> saveCsvBD() {
+    public ResponseEntity<?> saveCsvBD() {
         Response<String, String> respo = new Response<>();
         File fileExist = new File(UPLOAD_DIR, this.nameArchivo);
         if (ValidateFile.validateExist(fileExist)) {
-            respo.ResponseError(MsgError.error.toString(), 400,
+            respo.ResponseError(MsgError.error.toString(), 404,
                     MsgError.notFoundFile.toString());
-            return respo;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(respo);
         }
         try {
             Path rutaArchivo = Paths.get(UPLOAD_DIR + "/" + this.nameArchivo);
@@ -70,14 +72,14 @@ public class CsvService {
             }
             reader.close(); // cerar la lectura
             respo.ResponseSuccess(MsgSuccess.ok.toString(), 200, MsgSuccess.updateBd.toString());
-            return respo;
+            return ResponseEntity.status(HttpStatus.OK.value()).body(respo);
         } catch (Exception ex) {
-            respo.ResponseError(MsgError.error.toString(), 400, MsgError.catchFileUpdateBd.toString());
-            return respo;
+            respo.ResponseError(MsgError.error.toString(), 404, MsgError.catchFileUpdateBd.toString());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(respo);
         }
     }
 
-    public Response<Base64Model, String> csvBase64() {
+    public ResponseEntity<?> csvBase64() {
         Response<Base64Model, String> respo = new Response<>();
         try {
             this.csvBase64 = new CsvBase64(UPLOAD_DIR, this.nameArchivo);
@@ -85,13 +87,13 @@ public class CsvService {
             if (base64 != null) {
                 Base64Model base64Model = new Base64Model(base64);
                 respo.ResponseSuccess(MsgSuccess.ok.toString(), 200, base64Model);
-                return respo;
+                return ResponseEntity.status(HttpStatus.OK.value()).body(respo);
             }
-            respo.ResponseError(MsgError.error.toString(), 400, MsgError.catchBase64.toString());
-            return respo;
+            respo.ResponseError(MsgError.error.toString(), 404, MsgError.catchBase64.toString());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(respo);
         } catch (Exception ex) {
-            respo.ResponseError(MsgError.error.toString(), 400, MsgError.catchBase64.toString());
-            return respo;
+            respo.ResponseError(MsgError.error.toString(), 404, MsgError.catchBase64.toString());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(respo);
         }
 
     }

@@ -8,13 +8,56 @@
     <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
   </head>
   <body>
-    <h1>Welcome, Ex-Colaborador<span th:text="${data.full_name}"></span>!</h1>
-    <img src="static/img/header.jpeg" alt="imagen-cabecera" />
-    <span th:text="${data.identified}"></span>
-    <span th:text="${data.fecha_final}"></span>
-    <span th:text="${data.cargo}"></span>
-    <footer>
-      <img src="static/img/footer.jpeg" alt="imagen-cabecera" />
+    <header>
+      <img class="img-header" src="static/img/header.jpeg" />
+    </header>
+    <div>
+      <p class="content-align">
+        Quito, <span th:text="${data.fecha_header}"></span>
+      </p>
+      <p style="text-align: center; padding-top: 30px"><b>CERTIFICADO</b></p>
+      <p style="text-align: center; padding-top: 10px">A quien interese:</p>
+    </div>
+    <div>
+      <p class="content-align">
+        En mi calidad de Gerente Nacional de Desarrollo Humano & Organizacional
+        de <b>MEGADATOS S.A.,</b> certifico que el/(la) Sr/(a).
+        <b th:text="${data.full_name}"></b>, portador/a de la C.I. #
+        <b th:text="${data.identified}"></b> trabajó en esta Empresa desde el
+        <b th:text="${data.fecha_ingreso}"></b> hasta
+        <b th:text="${data.fecha_final}"></b>, desempeñando las funciones de
+        <b th:text="${data.cargo}"></b>.
+      </p>
+      <br />
+      <br />
+      <p class="content-align">
+        Es todo cuanto puedo afirmar en honor a la verdad, y en tal virtud la
+        señor/(a) <b th:text="${data.full_name}"></b>, puede dar uso del
+        presente certificado de acuerdo a sus propios intereses.
+      </p>
+    </div>
+    <div>
+      <br />
+      <br />
+      <br />
+      <p style="text-align: center; padding-top: 10px">Atentamente,</p>
+      <br />
+      <br />
+      <br />
+      <br />
+      <p style="text-align: center; padding-top: 10px">
+        <span>QUEZADA SARMIENTO DEICITA</span><br /><b>GERENTE DE DH&O</b>
+      </p>
+      <p style="text-align: center; padding-top: 10px"><b>MEGADATOS S.A</b></p>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <footer class="display-footer">
+      <img src="./resource/footer.png" alt="" />
     </footer>
   </body>
 </html>

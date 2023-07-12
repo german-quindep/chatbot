@@ -29,5 +29,4 @@ public class ComisionesModel extends PdfModel {
     public void setComision(String comision) {
         this.comision = comision;
     }
-
 }

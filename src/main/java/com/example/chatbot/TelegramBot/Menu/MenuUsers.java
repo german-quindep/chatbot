@@ -62,4 +62,15 @@ public class MenuUsers {
         replyKeyboardMarkup.setResizeKeyboard(true);
         return replyKeyboardMarkup;
     }
+
+    public static ReplyKeyboardMarkup getMenuDHO(){
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        List<KeyboardRow> keyBoard= new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        row.add(new KeyboardButton(TipoOpc.cert_exColaborador.toString()));
+        keyBoard.add(row);
+        replyKeyboardMarkup.setKeyboard(keyBoard);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+        return replyKeyboardMarkup;
+    }
 }

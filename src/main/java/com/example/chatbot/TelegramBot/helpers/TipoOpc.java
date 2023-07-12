@@ -48,5 +48,11 @@ public enum TipoOpc {
         public String toString() {
             return "Certificado de pasantes";
         }
+    },
+    cert_exColaborador {
+        @Override
+        public String toString() {
+            return "Ex-colaborador";
+        }
     }
 }

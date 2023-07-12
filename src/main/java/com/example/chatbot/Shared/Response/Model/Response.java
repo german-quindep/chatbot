@@ -1,5 +1,6 @@
 package com.example.chatbot.Shared.Response.Model;
 
+
 public class Response<T, S> {
 
     public String message;

@@ -25,7 +25,7 @@ public class BotStrategyService {
         robotStrategies.forEach(robotStrategies -> map.put(robotStrategies.getTypeBot(), robotStrategies));
     }
 
-    public ResponseBot executeAlgoritmo(BotStrategyRegex robotType) {
-        return this.map.get(robotType).executeAlgoritmo();
+    public ResponseBot executeAlgoritmo(BotStrategyRegex robotType, String numero) {
+        return this.map.get(robotType).executeAlgoritmo(numero);
     }
 }

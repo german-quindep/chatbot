@@ -13,7 +13,7 @@ public class FechaBot implements IBotStrategy {
     }
 
     @Override
-    public ResponseBot executeAlgoritmo() {
+    public ResponseBot executeAlgoritmo(String numero) {
         ResponseBot responseBot = new ResponseBot();
         responseBot.setReplyKeyboardMarkup(null);
         responseBot.setRespuesta("El número tiene una fecha especifica");
